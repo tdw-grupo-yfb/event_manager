@@ -1,5 +1,7 @@
 EventManager::Application.routes.draw do  
-  root :to => 'main#index'
+  resources :eventos
+
+  root :to => 'eventos#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

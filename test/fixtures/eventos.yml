@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  titulo: MyString
+  descripcion: MyString
+  tipo: MyString
+  categoria: MyString
+  fechai: 2012-03-24
+  fechaf: 2012-03-24
+  estado: MyString
+  visitas: 1
+
+two:
+  titulo: MyString
+  descripcion: MyString
+  tipo: MyString
+  categoria: MyString
+  fechai: 2012-03-24
+  fechaf: 2012-03-24
+  estado: MyString
+  visitas: 1
