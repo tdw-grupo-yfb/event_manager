@@ -1,6 +1,19 @@
-<h1>Editing evento</h1>
+<div class="box">
+    <h3><span class="red">Evento</span></h3>
+    <br/>
+    <%= form_for @evento do |f| %>
+    <ul data-role="listview" data-inset="true">
+    	<li>
+    		<b><%= f.label :titulo %></B><%= f.text_field :titulo %>
+    	</li>
+    	<li>
+    		<b><%= f.label :descripcion %></B><%= f.text_area :descripcion %>
+    	</li>
+    	
+    </ul>
+    <%= link_to 'Guardar', admin_path, "data-role"=>"button", "data-mini"=>"true" %>
+	<% end %>
+	<%= link_to 'Regresar', admin_path, "data-role"=>"button", "data-mini"=>"true", "data-icon"=>"back" %>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @evento %> |
-<%= link_to 'Back', eventos_path %>
+<!--%= render 'form' %-->

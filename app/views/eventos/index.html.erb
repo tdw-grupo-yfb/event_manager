@@ -2,7 +2,7 @@
     <h3><span class="red">Tr&aacute;mites</span></h3>
     <ul data-role="listview" data-inset="true" data-filter="true">
         <% @tramites.each do |tramite| %>
-            <li><%= link_to tramite.titulo, tramite %></li>
+            <li><%= link_to tramite.titulo, tramite, "data-rel"=>"dialog" %></li>
         <% end %>
         <% if @tramites.count == 0 %>
             <li><span class="red">no existen tramites pendientes</span></li>
@@ -13,7 +13,7 @@
     <h3><span class="red">Noticias</span></h3>
     <ul data-role="listview" data-inset="true" data-filter="true">
         <% @noticias.each do |noticia| %>
-            <li><%= link_to noticia.titulo, noticia %></li>
+            <li><%= link_to noticia.titulo, noticia, "data-rel"=>"dialog" %></li>
         <% end %>
         <% if @noticias.count == 0 %>
             <li><span class="red">no existen noticias pendientes</span></li>
@@ -24,7 +24,7 @@
     <h3><span class="red">M&aacute;s vistos</span></h3>
     <ul data-role="listview" data-inset="true" data-filter="true">
         <% @vistos.each do |visto| %>
-            <li><%= link_to visto.titulo, visto %></li>
+            <li><%= link_to visto.titulo, visto, "data-rel"=>"dialog" %></li>
         <% end %>
     </ul>
 </div>

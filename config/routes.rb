@@ -2,7 +2,8 @@ EventManager::Application.routes.draw do
   resources :eventos
 
   root :to => 'eventos#index'
-  
+  match 'admin' => 'eventos#admin'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

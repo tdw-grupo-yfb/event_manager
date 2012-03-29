@@ -1,6 +1,10 @@
 class EventosController < ApplicationController
+  USER_ID, PASSWORD = "admin", "admin64"
+
+  # Requiere autenticacion solo para admin, crear y editar
+  before_filter :authenticate, :only => [:admin, :new, :edit ]
+
   # GET /eventos
-  # GET /eventos.json
   def index
     @tramites = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "tramite", Date.today])
     @noticias = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "noticia", Date.today])
@@ -11,13 +15,23 @@ class EventosController < ApplicationController
     end
   end
 
-  # GET /eventos/1
-  # GET /eventos/1.json
-  def show
-    @evento = Evento.find(params[:id])
+  # GET /admin
+  def admin
+    @eventos = Evento.find(:all, :order => "fechai asc, tipo desc")
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # index.html.erb
+    end
+  end  
+
+  # GET /eventos/1
+  def show
+    @evento = Evento.find(params[:id])
+    @evento.visitas = @evento.visitas.nil? ? 1 : @evento.visitas + 1
+    @evento.save
+
+    respond_to do |format|
+      format.html { render html: @evento, :layout => 'empty'}
     end
   end
 
@@ -28,7 +42,6 @@ class EventosController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @evento }
     end
   end
 
@@ -80,4 +93,11 @@ class EventosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+  def authenticate
+      authenticate_or_request_with_http_basic do |id, password| 
+          id == USER_ID && password == PASSWORD
+      end
+   end
 end

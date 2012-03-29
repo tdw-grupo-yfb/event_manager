@@ -1,45 +1,16 @@
+<% content_for :header do %>
+	<h1><b><%= @evento.titulo %></b></h1>
+<% end %>
+
 <p id="notice"><%= notice %></p>
+<p><%= @evento.descripcion %><br/></p>
+  
+  <%if @evento.fechaf.nil? %>
+  	<p>para el día <b><%= @evento.fechai %></b></p>
+  <%else%>
+    <p>desde el <b><%= @evento.fechai %></b> al <b><%= @evento.fechaf %></b></p>
+  <%end%>
 
-<p>
-  <b>Titulo:</b>
-  <%= @evento.titulo %>
-</p>
+<!-- tipo, categoria, estado, visitas -->
 
-<p>
-  <b>Descripcion:</b>
-  <%= @evento.descripcion %>
-</p>
-
-<p>
-  <b>Tipo:</b>
-  <%= @evento.tipo %>
-</p>
-
-<p>
-  <b>Categoria:</b>
-  <%= @evento.categoria %>
-</p>
-
-<p>
-  <b>Fechai:</b>
-  <%= @evento.fechai %>
-</p>
-
-<p>
-  <b>Fechaf:</b>
-  <%= @evento.fechaf %>
-</p>
-
-<p>
-  <b>Estado:</b>
-  <%= @evento.estado %>
-</p>
-
-<p>
-  <b>Visitas:</b>
-  <%= @evento.visitas %>
-</p>
-
-
-<%= link_to 'Edit', edit_evento_path(@evento) %> |
-<%= link_to 'Back', eventos_path %>
+<%= link_to 'Regresar', eventos_path, "data-role"=>"button", "data-mini"=>"true", "data-icon"=>"back" %>

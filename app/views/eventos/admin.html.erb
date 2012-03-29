@@ -1,0 +1,22 @@
+<div id="teaser">
+    <h3><span class="red">Eventos</span></h3>
+    <br/>
+    <ul data-role="listview" data-inset="true" data-filter="true">
+        <%
+        fixed_divider = false
+        custom_divider = false
+        %>
+        <% @eventos.each do |evento| %>
+            
+            <li>
+                <%= link_to evento.titulo, edit_evento_path(evento.id) %>
+                <!--span class="ui-li-count"><%= evento.visitas %></span-->
+                <!--p class="ui-li-aside"><strong><%= evento.fechai %></strong> h.</p-->
+            </li>
+
+        <% end %>
+    </ul>
+</div>
+
+<!--li data-filtertext="NASDAQ:AAPL Apple Inc."><a href="#">item</a></li>
+<li data-role="list-divider"><a href="#">eventos fijos</a></li-->
