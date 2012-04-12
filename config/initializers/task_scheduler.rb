@@ -6,6 +6,16 @@ scheduler = Rufus::Scheduler.start_new
 
 ## It will print message every i minute
 scheduler.every("5s") do
+
+	eve_ = Evento.find(:all, :limit =>10, :conditions => ["estado = 'P' AND fechai = ?", Date.today])
+	
+	eve_.each do |eventox|
+		puts("El dia de hoy se realizara el evento: " + eventox.titulo)
+		eventox.estado = "E"
+		eventox.save
+	end
+
+
   #puts("HELLO #{Time.now}")
   #a = Evento.new
   #a.titulo = "Noticia"
