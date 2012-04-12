@@ -1,19 +1,51 @@
-<div class="box">
+<div id="edit" style="margin-right: 45px;">
     <h3><span class="red">Evento</span></h3>
     <br/>
     <%= form_for @evento do |f| %>
     <ul data-role="listview" data-inset="true">
     	<li>
-    		<b><%= f.label :titulo %></B><%= f.text_field :titulo %>
+    		<b><%= f.label :titulo %></b><%= f.text_field :titulo %>
     	</li>
     	<li>
-    		<b><%= f.label :descripcion %></B><%= f.text_area :descripcion %>
+    		<b><%= f.label :descripcion %></b><%= f.text_area :descripcion %>
     	</li>
-    	
+    	<!--li>
+            <fieldset data-role="controlgroup">
+            <legend><b><%= f.label :tipo %></b></legend>
+            <%= f.radio_button :tipo, "fixed" %><label>evento fijo</label>
+            <%= f.radio_button :tipo, "custom" %><label>evento personalizado</label>
+            </fieldset>
+        </li-->
+        <!--li>
+            <fieldset data-role="controlgroup">
+            <legend><b><%= f.label :categoria %></b></legend>
+            <%= f.radio_button :categoria, "tramite" %><label>Tr&aacute;mite</label>
+            <%= f.radio_button :categoria, "noticia" %><label>Noticia</label>
+            </fieldset>
+        </li-->
+        <!--li>
+            <b><%= f.label :fechai %></b><%= f.text_field :fechai %>
+        </li-->
+        <!--li>
+            <b><%= f.label :fechaf %></b><%= f.text_field :fechaf %>
+        </li-->
+        <li>
+            <%= link_to 'Guardar', admin_path, "data-role"=>"button", "data-mini"=>"true" %>
+        </li>
+        <li>
+            <%= link_to 'Regresar', admin_path, "data-role"=>"button", "data-mini"=>"true", "data-icon"=>"back" %>
+        </li>
     </ul>
-    <%= link_to 'Guardar', admin_path, "data-role"=>"button", "data-mini"=>"true" %>
+    
 	<% end %>
-	<%= link_to 'Regresar', admin_path, "data-role"=>"button", "data-mini"=>"true", "data-icon"=>"back" %>
 </div>
 
 <!--%= render 'form' %-->
+<!--
+t.string :tipo
+t.string :categoria
+t.date :fechai
+t.date :fechaf
+t.string :estado
+t.integer :visitas
+-->

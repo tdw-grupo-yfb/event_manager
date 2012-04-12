@@ -1,3 +1,5 @@
+#require 'twitter_consumer'
+
 class EventosController < ApplicationController
   USER_ID, PASSWORD = "admin", "admin64"
 
@@ -18,6 +20,11 @@ class EventosController < ApplicationController
   # GET /admin
   def admin
     @eventos = Evento.find(:all, :order => "fechai asc, tipo desc")
+
+    # access to twitter access token
+    #@twitter = Twitter_consumer.new
+    #@access_token = @twitter.prepare_access_token("551535495-yKBdRSm23icSrEINfdmh1QH7Qg4ClDbnnmO0oJMc", "qSixgT3Ejk3Cex9w4KDIl6gDm6YK7csxBa3AHnU")
+    #@response = @access_token.get "/agreements.xml"
 
     respond_to do |format|
       format.html # index.html.erb

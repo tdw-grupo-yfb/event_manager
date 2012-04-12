@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 gem 'rufus-scheduler'
+gem 'oauth'
 #gem 'mongo_mapper'
 
 # Bundle edge Rails instead:
