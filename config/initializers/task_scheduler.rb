@@ -6,13 +6,13 @@ scheduler = Rufus::Scheduler.start_new
 
 ## It will print message every i minute
 scheduler.every("5s") do
-  puts("HELLO #{Time.now}")
-  a = Evento.new
-  a.titulo = "Noticia"
-  a.categoria = "noticia"
-  a.fechai = "2012-12-12"
-  a.save
-  puts("Evento: " + a.titulo)
+  #puts("HELLO #{Time.now}")
+  #a = Evento.new
+  #a.titulo = "Noticia"
+  #a.categoria = "noticia"
+  #a.fechai = "2012-12-12"
+  #a.save
+  #puts("Evento: " + a.titulo)
 end
 
 ## Prints the message every day at noon
