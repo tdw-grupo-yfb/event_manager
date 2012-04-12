@@ -6,9 +6,9 @@ class EventosController < ApplicationController
 
   # GET /eventos
   def index
-    @tramites = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "tramite", Date.today])
-    @noticias = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "noticia", Date.today])
-    @vistos = Evento.find(:all, :order => "visitas, fechai asc", :limit =>10, :conditions => ["fechai >= ?", Date.today])
+    @tramites = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "T", Date.today])
+    @noticias = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "N", Date.today])
+    @vistos = Evento.find(:all, :order => "visitas desc, fechai", :limit =>10, :conditions => ["visitas > 0 AND fechai >= ?", Date.today])
 
     respond_to do |format|
       format.html # index.html.erb
