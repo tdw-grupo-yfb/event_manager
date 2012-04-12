@@ -1,51 +1,69 @@
-<div id="edit" style="margin-right: 45px;">
-    <h3><span class="red">Evento</span></h3>
+<div>
+    <div data-role="header" data-theme="c">
+        <h3><span class="red">Evento</span></h3>
+        <%= link_to "Regresar", admin_path, "data-icon"=>"back" %>
+        <%= link_to "Eliminar", evento_path, :method=>:delete, "data-theme"=>"b", "data-icon"=>"delete", :confirm=>"¿Estas seguro que desea eliminar este evento?" %>
+    </div>
     <br/>
+    
+    <% if @evento.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@evento.errors.count, "error") %> prohibido este evento de ser guardado:</h2>
+          <ul>
+          <% @evento.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <% if flash[:warning] or flash[:notice] %>
+      <div id="notice" <% if flash[:warning] %>class="warning"<% end %>>
+        <%= flash[:warning] || flash[:notice] %>
+      </div>
+      <script type="text/javascript">
+        setTimeout("new Effect.Fade('notice');", 15000)
+      </script>
+    <% end %>
+
     <%= form_for @evento do |f| %>
     <ul data-role="listview" data-inset="true">
-    	<li>
-    		<b><%= f.label :titulo %></b><%= f.text_field :titulo %>
-    	</li>
-    	<li>
-    		<b><%= f.label :descripcion %></b><%= f.text_area :descripcion %>
-    	</li>
-    	<!--li>
-            <fieldset data-role="controlgroup">
-            <legend><b><%= f.label :tipo %></b></legend>
-            <%= f.radio_button :tipo, "fixed" %><label>evento fijo</label>
-            <%= f.radio_button :tipo, "custom" %><label>evento personalizado</label>
-            </fieldset>
-        </li-->
-        <!--li>
-            <fieldset data-role="controlgroup">
-            <legend><b><%= f.label :categoria %></b></legend>
-            <%= f.radio_button :categoria, "tramite" %><label>Tr&aacute;mite</label>
-            <%= f.radio_button :categoria, "noticia" %><label>Noticia</label>
-            </fieldset>
-        </li-->
-        <!--li>
-            <b><%= f.label :fechai %></b><%= f.text_field :fechai %>
-        </li-->
-        <!--li>
-            <b><%= f.label :fechaf %></b><%= f.text_field :fechaf %>
-        </li-->
         <li>
-            <%= link_to 'Guardar', admin_path, "data-role"=>"button", "data-mini"=>"true" %>
+            <b><%= f.label :titulo %></b><%= f.text_field :titulo %>
         </li>
         <li>
-            <%= link_to 'Regresar', admin_path, "data-role"=>"button", "data-mini"=>"true", "data-icon"=>"back" %>
+            <b><%= f.label :descripcion %></b><%= f.text_area :descripcion %>
+        </li>
+        <li>
+            <fieldset data-role="controlgroup">
+                <legend><b><%= f.label :tipo %></b></legend>
+                    <%= f.radio_button :tipo, "F" %>
+                    <label for="evento_tipo_f">Fijo</label>
+                    <%= f.radio_button :tipo, "P" %>
+                    <label for="evento_tipo_p">Personalizado</label>
+            </fieldset>
+        </li>
+        <li>
+            <fieldset data-role="controlgroup">
+                <legend><b><%= f.label :categoria %></b></legend>
+                    <%= f.radio_button :categoria, "T" %>
+                    <label for="evento_categoria_t">Tr&aacute;mite</label>
+                    <%= f.radio_button :categoria, "N" %>
+                    <label for="evento_categoria_n">Noticia</label>
+            </fieldset>
+        </li>
+        <li>
+            <b><%= f.label :fechai, "Fecha Inicio" %></b>
+            <%= f.text_field :fechai, "type"=>"date", "data-role"=>"datebox", "data-options"=>'{"mode": "calbox","dateFormat":"YYYY-mm-dd"}' %>
+        </li>
+        <li>
+            <b><%= f.label :fechaf, "Fecha Fin" %></b>
+            <%= f.text_field :fechaf, "type"=>"date", "data-role"=>"datebox", "data-options"=>'{"mode": "calbox","dateFormat":"YYYY-mm-dd"}' %>
+        </li>
+        <li>
+            <%= f.submit 'Guardar', options={"data-role"=>"button", "data-mini"=>"true", "data-icon"=>"gear"}%>
         </li>
     </ul>
     
 	<% end %>
 </div>
-
-<!--%= render 'form' %-->
-<!--
-t.string :tipo
-t.string :categoria
-t.date :fechai
-t.date :fechaf
-t.string :estado
-t.integer :visitas
--->

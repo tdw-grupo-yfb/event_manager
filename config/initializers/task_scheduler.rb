@@ -5,19 +5,25 @@ require 'rufus/scheduler'
 scheduler = Rufus::Scheduler.start_new
 
 ## It will print message every i minute
+scheduler.every("2m") do
 
-# Verifica si ha eventos pendientes y los envia
+	#eve_ = Evento.find(:all, :limit =>10, :conditions => ["estado = 'P' AND fechai = ?", Date.today])
+	
+	#eve_.each do |eventox|
+	#	puts("El dia de hoy se realizara el evento: " + eventox.titulo)
+	#	eventox.estado = "E"
+	#	eventox.save
+	#end
 
 
-#scheduler.every("5s") do
-# puts("HELLO #{Time.now}")
-#  a = Evento.new
-#  a.titulo = "Noticia"
-#  a.categoria = "noticia"
-#  a.fechai = "2012-12-12"
-#  a.save
-#  puts("Evento: " + a.titulo)
-#end
+  #puts("HELLO #{Time.now}")
+  #a = Evento.new
+  #a.titulo = "Noticia"
+  #a.categoria = "noticia"
+  #a.fechai = "2012-12-12"
+  #a.save
+  #puts("Evento: " + a.titulo)
+end
 
 ## Prints the message every day at noon
 #scheduler.cron("0,2 * * * *") do

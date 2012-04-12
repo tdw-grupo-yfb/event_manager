@@ -1,4 +1,4 @@
-#require 'twitter_consumer'
+require 'twitter_consumer'
 
 class EventosController < ApplicationController
   USER_ID, PASSWORD = "admin", "admin64"
@@ -8,9 +8,9 @@ class EventosController < ApplicationController
 
   # GET /eventos
   def index
-    @tramites = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "tramite", Date.today])
-    @noticias = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "noticia", Date.today])
-    @vistos = Evento.find(:all, :order => "visitas, fechai asc", :limit =>10, :conditions => ["fechai >= ?", Date.today])
+    @tramites = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "T", Date.today])
+    @noticias = Evento.find(:all, :order => "fechai asc", :limit =>10, :conditions => ["categoria=? AND fechai >= ?", "N", Date.today])
+    @vistos = Evento.find(:all, :order => "visitas desc, fechai", :limit =>10, :conditions => ["visitas > 0 AND fechai >= ?", Date.today])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,11 +20,6 @@ class EventosController < ApplicationController
   # GET /admin
   def admin
     @eventos = Evento.find(:all, :order => "fechai asc, tipo desc")
-
-    # access to twitter access token
-    #@twitter = Twitter_consumer.new
-    #@access_token = @twitter.prepare_access_token("551535495-yKBdRSm23icSrEINfdmh1QH7Qg4ClDbnnmO0oJMc", "qSixgT3Ejk3Cex9w4KDIl6gDm6YK7csxBa3AHnU")
-    #@response = @access_token.get "/agreements.xml"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -64,47 +59,41 @@ class EventosController < ApplicationController
 
     respond_to do |format|
       if @evento.save
-        format.html { redirect_to @evento, notice: 'El Evento fue creado exitosamente.' }
-        format.json { render json: @evento, status: :created, location: @evento }
+        format.html { redirect_to admin_url, notice: 'El Evento fue creado exitosamente.' }
       else
         format.html { render action: "new" }
-        format.json { render json: @evento.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PUT /eventos/1
-  # PUT /eventos/1.json
   def update
     @evento = Evento.find(params[:id])
-
+    
     respond_to do |format|
       if @evento.update_attributes(params[:evento])
-        format.html { redirect_to @evento, notice: 'El Evento fue actualizado exitosamente.' }
-        format.json { head :no_content }
+        format.html { render :edit, notice: 'El Evento fue actualizado exitosamente.' }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @evento.errors, status: :unprocessable_entity }
+        format.html { render :edit }
       end
     end
   end
 
   # DELETE /eventos/1
-  # DELETE /eventos/1.json
   def destroy
     @evento = Evento.find(params[:id])
     @evento.destroy
 
     respond_to do |format|
-      format.html { redirect_to eventos_url }
-      format.json { head :no_content }
+      format.html { redirect_to admin_url }
     end
   end
 
   private
+
   def authenticate
       authenticate_or_request_with_http_basic do |id, password| 
           id == USER_ID && password == PASSWORD
       end
-   end
+  end
 end

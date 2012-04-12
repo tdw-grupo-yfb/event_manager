@@ -1,5 +1,68 @@
-<h1>New evento</h1>
+<div>
+    <div data-role="header" data-theme="c">
+        <h3><span class="red">Nuevo Evento</span></h3>
+        <%= link_to "Regresar", admin_path, "data-icon"=>"back" %>
+    </div>
+    <br/>
+    
+    <% if @evento.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@evento.errors.count, "error") %> prohibido este evento de ser guardado:</h2>
+          <ul>
+          <% @evento.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-<%= render 'form' %>
+    <% if flash[:warning] or flash[:notice] %>
+      <div id="notice" <% if flash[:warning] %>class="warning"<% end %>>
+        <%= flash[:warning] || flash[:notice] %>
+      </div>
+      <script type="text/javascript">
+        setTimeout("new Effect.Fade('notice');", 15000)
+      </script>
+    <% end %>
 
-<%= link_to 'Back', eventos_path %>
+    <%= form_for @evento do |f| %>
+    <ul data-role="listview" data-inset="true">
+        <li>
+            <b><%= f.label :titulo %></b><%= f.text_field :titulo %>
+        </li>
+        <li>
+            <b><%= f.label :descripcion %></b><%= f.text_area :descripcion %>
+        </li>
+        <li>
+            <fieldset data-role="controlgroup">
+                <legend><b><%= f.label :tipo %></b></legend>
+                    <%= f.radio_button :tipo, "F" %>
+                    <label for="evento_tipo_f">Fijo</label>
+                    <%= f.radio_button :tipo, "P" %>
+                    <label for="evento_tipo_p">Personalizado</label>
+            </fieldset>
+        </li>
+        <li>
+            <fieldset data-role="controlgroup">
+                <legend><b><%= f.label :categoria %></b></legend>
+                    <%= f.radio_button :categoria, "T" %>
+                    <label for="evento_categoria_t">Tr&aacute;mite</label>
+                    <%= f.radio_button :categoria, "N" %>
+                    <label for="evento_categoria_n">Noticia</label>
+            </fieldset>
+        </li>
+        <li>
+            <b><label for="evento_fechai">Fecha Inicio</label></b>
+            <%= f.text_field :fechai, "type"=>"date", "data-role"=>"datebox", "data-options"=>'{"mode": "calbox","dateFormat":"YYYY-mm-dd"}' %>
+        </li>
+        <li>
+            <b><label for="evento_fechai">Fecha Fin</label></b>
+            <%= f.text_field :fechaf, "type"=>"date", "data-role"=>"datebox", "data-options"=>'{"mode": "calbox","dateFormat":"YYYY-mm-dd"}' %>
+        </li>
+        <li>
+            <%= f.submit 'Guardar', options={"data-role"=>"button", "data-mini"=>"true", "data-icon"=>"gear"}%>
+        </li>
+    </ul>
+    
+	<% end %>
+</div>

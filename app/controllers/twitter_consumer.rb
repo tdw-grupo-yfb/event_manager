@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'oauth'
 
 class Twitter_consumer
@@ -5,7 +6,7 @@ class Twitter_consumer
 	# Intercambia tu oauth_token y oauth_token_secret por un instancia AccessToken.
 	def prepare_access_token(oauth_token, oauth_token_secret)
 		consumer = OAuth::Consumer.new("rdtcwLFT4d8go6U76Lyw", "wHJOF5h141IJQmYNABb7QwZyFWcDmnDcEbnuLZ0xGM",
-		{ :site => "http://admin-eventos.herokuapp.com",
+		{ :site => "http://api.twitter.com",
 	      :scheme => :header
 	    })
 
