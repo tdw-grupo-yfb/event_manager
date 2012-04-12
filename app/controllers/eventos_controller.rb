@@ -1,4 +1,3 @@
-require 'twitter_consumer'
 
 class EventosController < ApplicationController
   USER_ID, PASSWORD = "admin", "admin64"
