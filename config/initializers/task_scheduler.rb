@@ -6,7 +6,7 @@ scheduler = Rufus::Scheduler.start_new
 
 ## It will print message every i minute
 scheduler.every("2m") do
-
+  
 	eve_ = Evento.find(:all, :limit =>10, :conditions => ["estado = 'P' AND fechai = ?", Date.today])
 	
 	puts("Cantidad de eventos encontrados: " + eve_.count.to_s)
