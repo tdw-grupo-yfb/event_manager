@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.2'
 gem 'rufus-scheduler'
 gem 'oauth'
-gem 'twitter', :git => 'git://github.com/caperaltasanchez/twitter.git'
+gem 'twitter' #, :git => 'git://github.com/caperaltasanchez/twitter.git'
 
 #gem 'mongo_mapper'
 
